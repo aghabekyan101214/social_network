@@ -1,0 +1,155 @@
+<style>
+    @media(min-width: 768px) {
+        .field-label-responsive {
+            padding-top: .5rem;
+            text-align: right;
+        }
+    }
+</style>
+<div class="container">
+    <form class="form-horizontal" role="form" method="POST" action="/add-user">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <h2>Register New User</h2>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="name">Name</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+                        <input type="text" name="name" class="form-control" id="name"
+                               placeholder="Name" required autofocus value="<% if(fields && fields.name) { %><%=fields.name%><% } %>">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                            <%if (errors) { %>
+                                <% errors.forEach(e =>{ %>
+                                    <% if(e.param == 'name') { %> <%=e.msg %> <% } %>
+                                <% }); %>
+                            <% } %>
+                        </span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="surname">Surname</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+                        <input type="text" name="surname" class="form-control" id="surname"
+                               placeholder="Surname" required autofocus value="<% if(fields && fields.surname) { %><%=fields.surname%><% } %>">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                            <%if (errors) { %>
+                                <% errors.forEach(e =>{ %>
+                                    <% if(e.param == 'surname') { %> <%=e.msg %> <% } %>
+                                <% }); %>
+                            <% } %>
+                        </span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="email">E-Mail Address</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
+                        <input type="text" name="email" class="form-control" id="email"
+                               placeholder="you@example.com" required autofocus value="<% if(fields && fields.email) { %><%=fields.email%><% } %>">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                            <%if (errors) { %>
+                                <% errors.forEach(e =>{ %>
+                                    <% if(e.param == 'email') { %> <%=e.msg + " | " %> <% } %>
+                                <% }); %>
+                            <% } %>
+                            <%if(uniqueEmailError != "") {%>
+                            <%=uniqueEmailError%>
+                            <%}%>
+                        </span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="password">Password</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group has-danger">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
+                        <input type="password" name="password" class="form-control" id="password"
+                               placeholder="Password" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                            <%if (errors) { %>
+                                <% errors.forEach(e =>{ %>
+                                    <% if(e.param == 'password') { %> <%=e.msg %> <% } %>
+                                <% }); %>
+                            <% } %>
+                        </span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="password">Confirm Password</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem">
+                            <i class="fa fa-repeat"></i>
+                        </div>
+                        <input type="password" name="password_confirm" class="form-control"
+                               id="password_confirm" placeholder="Password Confirmation" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                            <%if (errors) { %>
+                                <% errors.forEach(e =>{ %>
+                                    <% if(e.param == 'password_confirm') { %> <%=e.msg %> <% } %>
+                                <% }); %>
+                            <% } %>
+                        </span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-success"><i class="fa fa-user-plus"></i> Register</button>
+            </div>
+        </div>
+    </form>
+</div>
